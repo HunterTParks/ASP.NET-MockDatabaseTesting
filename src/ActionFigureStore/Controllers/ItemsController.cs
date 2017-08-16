@@ -27,9 +27,15 @@ namespace ActionFigureStore.Controllers
             }
         }
 
-        public ViewResult Index()
+        public IActionResult Index()
         {
             return View(itemRepo.Items.ToList());
+        }
+
+        public IActionResult ItemInfo(int ItemInfo)
+        {
+            Item item = itemRepo.Items.FirstOrDefault(x => x.ItemId == ItemInfo);
+            return Json(item);
         }
 
         public IActionResult Details(int id)

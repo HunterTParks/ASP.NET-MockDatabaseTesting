@@ -1,0 +1,43 @@
+﻿@{
+    ViewData["Title"] = "Index";
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model IEnumerable<ActionFigureStore.Models.Item>
+
+
+@foreach(var m in Model)
+{
+    <div class="panel panel-default item">
+        @m.Description
+        <form action="ItemInfo" class="show-item">
+            <input type="hidden" name ="ItemInfo" value="@m.ItemId"/>
+            <button type="submit">Submit</button>
+        </form>
+        <div class="hideYay" id="result-@m.ItemId"></div>
+    </div>
+}
+
+<script>
+    $(".show-item").submit(function (event) {
+        console.log($(this));
+        event.preventDefault();
+        $.ajax({
+            url: '@Url.Action("ItemInfo")',
+            type: 'GET',
+            data: $(this).serialize(),
+            datatype: 'json',
+            contentType: 'application/json',
+            success: function (result) {
+                console.log(result);
+                var ulResult = '<ul>';
+                ulResult += '<li> Price: $' + result.price + '</li><li> Inventory:' + result.inventory + '</li>';
+                ulResult += '</ul>';
+                $('#result-' + result.itemId).html(ulResult).toggle();
+                console.log('#result-' + result.itemId);
+            }
+        });
+    });
+
+</script>

@@ -27,14 +27,20 @@ namespace ActionFigureStore
         {
             services.AddMvc();
 
-            services.AddEntityFramework()
-                .AddDbContext<ActionFigureContext>(options =>
-                    options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
+        //    services.AddEntityFramework()
+        //        .AddDbContext<ActionFigureContext>(options =>
+        //            options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
+
+            services.AddDbContext<ActionFigureContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+                        services.AddEntityFramework()
+                            .AddEntityFrameworkSqlServer();
         }
 
  
         public void Configure(IApplicationBuilder app)
         {
+            app.UseStaticFiles();
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

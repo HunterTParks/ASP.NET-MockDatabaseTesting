@@ -25,6 +25,18 @@ namespace ActionFigureStore.Models
             }
         }
 
+        public Item(string description, float price, int inventory)
+        {
+            Description = description;
+            Price = price;
+            Inventory = inventory;
+        }
+
+        public Item()
+        {
+
+        }
+
         public override int GetHashCode()
         {
             return this.ItemId.GetHashCode();
