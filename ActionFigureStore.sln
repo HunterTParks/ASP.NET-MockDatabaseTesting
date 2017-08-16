@@ -1,0 +1,41 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{8FD46D45-3B18-4BF2-A2BE-890CEE7A7F95}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{4D95150E-F909-41AA-A73F-EAFA50895529}"
+	ProjectSection(SolutionItems) = preProject
+		global.json = global.json
+	EndProjectSection
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "ActionFigureStore", "src\ActionFigureStore\ActionFigureStore.xproj", "{AD1B20E3-D62D-4810-822B-911F2F287D2D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{3ED8D549-2A9D-477E-8E3F-23A243C9BFC7}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "ActionFigureStore.test", "ActionFigureStore.test\ActionFigureStore.test.xproj", "{A2B54398-E4C2-4B89-A802-926F14BCB119}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AD1B20E3-D62D-4810-822B-911F2F287D2D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD1B20E3-D62D-4810-822B-911F2F287D2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD1B20E3-D62D-4810-822B-911F2F287D2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD1B20E3-D62D-4810-822B-911F2F287D2D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A2B54398-E4C2-4B89-A802-926F14BCB119}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2B54398-E4C2-4B89-A802-926F14BCB119}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A2B54398-E4C2-4B89-A802-926F14BCB119}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A2B54398-E4C2-4B89-A802-926F14BCB119}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{AD1B20E3-D62D-4810-822B-911F2F287D2D} = {8FD46D45-3B18-4BF2-A2BE-890CEE7A7F95}
+		{A2B54398-E4C2-4B89-A802-926F14BCB119} = {3ED8D549-2A9D-477E-8E3F-23A243C9BFC7}
+	EndGlobalSection
+EndGlobal
