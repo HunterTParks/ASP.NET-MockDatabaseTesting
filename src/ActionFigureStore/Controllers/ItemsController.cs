@@ -81,5 +81,21 @@ namespace ActionFigureStore.Controllers
             return RedirectToAction("Index");
         }
 
+        [HttpPost]
+        public IActionResult NewActionFigure(string description, float price, int inventory)
+        {
+            Item newActionFigure = new Item(description, price, inventory);
+            itemRepo.Save(newActionFigure);
+            return Json(newActionFigure);
+        }
+
+        [HttpPost]
+        public IActionResult BuyFigure(int Figure)
+        { 
+            Item thisItem = itemRepo.Items.FirstOrDefault(x => x.ItemId == Figure);
+            thisItem.Inventory -= 1;
+            itemRepo.Edit(thisItem);
+            return Json(thisItem);
+        }
     }
 }

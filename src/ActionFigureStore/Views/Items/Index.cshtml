@@ -6,22 +6,61 @@
 
 @model IEnumerable<ActionFigureStore.Models.Item>
 
+<form action="new-actionFigure" class="new-actionfigure"> 
+    <label for="description">Description: </label>
+    <input type="text" name="description" />
+    <label for="price">Price: </label>
+    <input type="text" name="price" />
+    <label for="inventory">How many?: </label>
+    <input type="text" name="inventory" />
 
-@foreach(var m in Model)
-{
+    <button type="submit">Submit</button>
+</form>
+<div id="success"></div>
+
+@*Create Item script*@
+<script> 
+    $('.new-actionfigure').submit(function (event) {
+        event.preventDefault()
+        $.ajax({
+            url: '@Url.Action("NewActionFigure")',
+            type: 'POST',
+            datatype: 'json',
+            data: $(this).serialize(),
+            success: function (result) {
+                var resultMessage = 'You\'ve succesfully added ' + result.description + ' to our Catalog';
+                $("#success").html(resultMessage);
+            }
+        });
+    });
+</script>
+
+@foreach(var m in Model) 
+{@*Show Item details button*@
     <div class="panel panel-default item">
         @m.Description
-        <form action="ItemInfo" class="show-item">
+        <form action="ItemInfo" class="show-item"> 
             <input type="hidden" name ="ItemInfo" value="@m.ItemId"/>
-            <button type="submit">Submit</button>
+            <button type="submit">Details</button>
         </form>
-        <div class="hideYay" id="result-@m.ItemId"></div>
-    </div>
+
+        <div class="hideYay" id="result-@m.ItemId">
+
+        </div>
+
+         @* Buy Item button*@
+        <div id="result-@m.ItemId"></div>
+
+        <form action="BuyFigure" class="buy-figure"> 
+            <input type="hidden" name="Figure" value="@m.ItemId" />
+            <button id ="buyButton" type="submit">Buy</button>
+        </form>
+     </div>
 }
 
-<script>
+<script> @*Show Details script*@
     $(".show-item").submit(function (event) {
-        console.log($(this));
+        console.log("TEST 1")
         event.preventDefault();
         $.ajax({
             url: '@Url.Action("ItemInfo")',
@@ -30,14 +69,37 @@
             datatype: 'json',
             contentType: 'application/json',
             success: function (result) {
-                console.log(result);
+                console.log("TEST 2");
                 var ulResult = '<ul>';
                 ulResult += '<li> Price: $' + result.price + '</li><li> Inventory:' + result.inventory + '</li>';
                 ulResult += '</ul>';
                 $('#result-' + result.itemId).html(ulResult).toggle();
+                
                 console.log('#result-' + result.itemId);
             }
         });
     });
 
+
 </script>
+<script>@*Buy Item Script*@
+    $(".buy-figure").submit(function (event) {
+        console.log($(this).serialize());
+        event.preventDefault();
+        $.ajax({
+            url: '@Url.Action("BuyFigure")',
+            type: 'POST',
+            data: $(this).serialize(),
+            datatype: 'json',
+            //contentType: 'application/json',
+            success: function (result) {
+                console.log($(this).serialize());
+                var success = "You have bought one";
+                $("#success").empty();
+                $("#success").html(success);
+            }
+        });
+    });
+</script>
+
+
